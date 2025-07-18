@@ -5,12 +5,14 @@
 ## 📋 배포 전 준비사항
 
 ### 1. 필수 요구사항
+
 - [Node.js](https://nodejs.org/) 18+ 설치
 - [Git](https://git-scm.com/) 설치
 - GitHub 계정 (권장)
 - Supabase 계정 (데이터베이스 사용 시)
 
 ### 2. 프로젝트 설정 확인
+
 ```bash
 # 현재 디렉토리에서 필수 파일들이 있는지 확인
 ls -la
@@ -74,26 +76,26 @@ Vercel은 React 애플리케이션 배포에 가장 적합한 플랫폼입니다
 `vite.config.ts` 파일을 생성하세요:
 
 ```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './'),
+      "@": path.resolve(__dirname, "./"),
     },
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     sourcemap: true,
   },
   server: {
     port: 3000,
   },
-})
+});
 ```
 
 #### 3단계: TypeScript 설정
@@ -169,7 +171,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 #### 6단계: GitHub Repository 생성
 
 1. [GitHub](https://github.com)에서 새 repository 생성
-2. Repository 이름: `casino-equipment-management`
+2. Repository 이름: `equip_ca`
 3. Public 또는 Private 선택
 4. README 추가하지 않음 (이미 파일들이 있으므로)
 
@@ -194,7 +196,7 @@ git add .
 git commit -m "Initial commit: 카지노 장비 관리 시스템"
 
 # GitHub repository와 연결 (your-username을 실제 사용자명으로 변경)
-git remote add origin https://github.com/your-username/casino-equipment-management.git
+git remote add origin https://github.com/serameto/equip_ca.git
 
 # 푸시
 git push -u origin main
@@ -204,7 +206,7 @@ git push -u origin main
 
 1. [Vercel](https://vercel.com)에 접속하여 GitHub로 로그인
 2. "New Project" 클릭
-3. GitHub repository `casino-equipment-management` 선택
+3. GitHub repository `equip_ca` 선택
 4. 프로젝트 설정:
    - Framework Preset: `Vite`
    - Root Directory: `./`
@@ -212,14 +214,15 @@ git push -u origin main
    - Output Directory: `dist`
 5. 환경 변수 설정:
    ```
-   NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+   NEXT_PUBLIC_SUPABASE_URL=https://rkncoerklonzjjycfalz.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJrbmNvZXJrbG9uempqeWNmYWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1Njc5MzYsImV4cCI6MjA2ODE0MzkzNn0.C-Chcp-2fPDnbuSWU9wP8yuRfyaBwZm7v1_buAci0PM
    ```
 6. "Deploy" 클릭
 
 #### 9단계: 커스텀 도메인 설정 (선택사항)
 
 Vercel 대시보드에서:
+
 1. 프로젝트 설정 → Domains
 2. 원하는 도메인 입력 (예: `casino-management.yourdomain.com`)
 3. DNS 설정 안내에 따라 도메인 제공업체에서 설정
@@ -266,6 +269,7 @@ firebase deploy
 ### 성능 최적화
 
 1. **번들 크기 최적화**:
+
 ```typescript
 // vite.config.ts에 추가
 export default defineConfig({
@@ -273,16 +277,20 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-select'],
+          vendor: ["react", "react-dom"],
+          ui: [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-select",
+          ],
         },
       },
     },
   },
-})
+});
 ```
 
 2. **이미지 최적화**:
+
 ```bash
 # 이미지 압축 도구 설치
 npm install --save-dev vite-plugin-imagemin
@@ -291,6 +299,7 @@ npm install --save-dev vite-plugin-imagemin
 ### SEO 최적화
 
 `index.html`에 메타 태그 추가:
+
 ```html
 <meta name="keywords" content="카지노, 장비관리, 불출현황, 관리시스템" />
 <meta name="author" content="Your Company Name" />
@@ -302,13 +311,16 @@ npm install --save-dev vite-plugin-imagemin
 ### 보안 설정
 
 1. **환경 변수 보안**:
+
    - API 키는 환경 변수로만 관리
    - 프로덕션과 개발 환경 분리
 
 2. **HTTPS 강제**:
+
    - 대부분의 현대 호스팅 플랫폼은 자동 HTTPS 제공
 
 3. **CSP 헤더 설정** (Vercel의 경우):
+
 ```json
 // vercel.json
 {
@@ -331,6 +343,7 @@ npm install --save-dev vite-plugin-imagemin
 ### 1. Google Analytics 추가
 
 `index.html`에 추가:
+
 ```html
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
@@ -349,6 +362,7 @@ npm install @sentry/react
 ```
 
 `main.tsx`에 추가:
+
 ```typescript
 import * as Sentry from "@sentry/react";
 
@@ -363,6 +377,7 @@ Sentry.init({
 ### 자주 발생하는 문제들
 
 1. **빌드 실패**:
+
    ```bash
    # 의존성 재설치
    rm -rf node_modules package-lock.json
@@ -370,10 +385,12 @@ Sentry.init({
    ```
 
 2. **환경 변수 인식 안됨**:
+
    - Vercel: 대시보드에서 환경 변수 재확인
    - 변수명이 `NEXT_PUBLIC_`로 시작하는지 확인
 
 3. **라우팅 문제** (SPA):
+
    ```json
    // vercel.json
    {
@@ -399,6 +416,7 @@ Sentry.init({
 ### 자동 배포 설정
 
 GitHub Actions로 자동 배포:
+
 ```yaml
 # .github/workflows/deploy.yml
 name: Deploy to Vercel
@@ -423,12 +441,14 @@ jobs:
 ## 💰 비용 안내
 
 ### 무료 옵션:
+
 - **Vercel**: 개인/소규모 프로젝트 무료
 - **Netlify**: 월 100GB 대역폭 무료
 - **GitHub Pages**: 공개 repository 무료
 - **Firebase**: 일정 사용량까지 무료
 
 ### 유료 업그레이드가 필요한 경우:
+
 - 높은 트래픽 (월 10,000+ 방문자)
 - 커스텀 도메인 (일부 플랫폼)
 - 고급 분석 기능
@@ -441,6 +461,7 @@ jobs:
 배포 과정에서 문제가 발생하면:
 
 1. **공식 문서 확인**:
+
    - [Vercel 문서](https://vercel.com/docs)
    - [Netlify 문서](https://docs.netlify.com)
    - [Supabase 문서](https://supabase.com/docs)
