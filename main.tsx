@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './styles/globals.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./styles/globals.css";
 
 // Error boundary for production
 class ErrorBoundary extends React.Component<
@@ -9,16 +9,16 @@ class ErrorBoundary extends React.Component<
   { hasError: boolean }
 > {
   constructor(props: { children: React.ReactNode }) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(): { hasError: boolean } {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Application error:', error, errorInfo)
+    console.error("Application error:", error, errorInfo);
   }
 
   render() {
@@ -30,7 +30,8 @@ class ErrorBoundary extends React.Component<
               오류가 발생했습니다
             </h1>
             <p className="text-gray-600 mb-6">
-              페이지를 새로고침하거나 잠시 후 다시 시도해 주세요.
+              페이지를 새로고침하거나 잠시 후 다시 시도해
+              주세요.
             </p>
             <button
               onClick={() => window.location.reload()}
@@ -40,17 +41,17 @@ class ErrorBoundary extends React.Component<
             </button>
           </div>
         </div>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ErrorBoundary>
       <App />
     </ErrorBoundary>
   </React.StrictMode>,
-)
+);
